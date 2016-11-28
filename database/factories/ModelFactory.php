@@ -21,3 +21,10 @@ $factory->define(editora\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(editora\Category::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => ucfirst($faker->unique()->word)
+    ];
+});
