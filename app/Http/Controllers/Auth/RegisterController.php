@@ -1,10 +1,10 @@
 <?php
 
-namespace editora\Http\Controllers\Auth;
+namespace Editora\Http\Controllers\Auth;
 
-use editora\User;
+use Editora\User;
 use Validator;
-use editora\Http\Controllers\Controller;
+use Editora\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

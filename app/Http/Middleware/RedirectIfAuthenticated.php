@@ -1,6 +1,6 @@
 <?php
 
-namespace editora\Http\Middleware;
+namespace Editora\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

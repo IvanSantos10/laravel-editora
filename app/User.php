@@ -1,6 +1,6 @@
 <?php
 
-namespace editora;
+namespace Editora;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

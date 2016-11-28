@@ -1,6 +1,6 @@
 <?php
 
-namespace editora\Exceptions;
+namespace Editora\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;

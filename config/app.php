@@ -174,11 +174,11 @@ return [
         /*
          * Application Service Providers...
          */
-        editora\Providers\AppServiceProvider::class,
-        editora\Providers\AuthServiceProvider::class,
-        // editora\Providers\BroadcastServiceProvider::class,
-        editora\Providers\EventServiceProvider::class,
-        editora\Providers\RouteServiceProvider::class,
+        Editora\Providers\AppServiceProvider::class,
+        Editora\Providers\AuthServiceProvider::class,
+        // Editora\Providers\BroadcastServiceProvider::class,
+        Editora\Providers\EventServiceProvider::class,
+        Editora\Providers\RouteServiceProvider::class,
 
     ],
 

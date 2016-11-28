@@ -1,2 +1,2 @@
 https://github.com/barryvdh/laravel-ide-helper
-
+composer require doctrine/dbal

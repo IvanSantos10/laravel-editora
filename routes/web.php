@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+route::group(['midllewere' => 'auth'], function (){
+   Route::resource('categories', 'CategoriesController');
+});

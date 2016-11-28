@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(editora\User::class, function (Faker\Generator $faker) {
+$factory->define(Editora\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -22,7 +22,7 @@ $factory->define(editora\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(editora\Category::class, function (Faker\Generator $faker) {
+$factory->define(Editora\Category::class, function (Faker\Generator $faker) {
 
     return [
         'name' => ucfirst($faker->unique()->word)

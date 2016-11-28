@@ -1,6 +1,6 @@
 <?php
 
-namespace editora\Providers;
+namespace Editora\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'editora\Model' => 'editora\Policies\ModelPolicy',
+        'Editora\Model' => 'Editora\Policies\ModelPolicy',
     ];
 
     /**

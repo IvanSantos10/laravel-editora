@@ -1,6 +1,6 @@
 <?php
 
-namespace editora;
+namespace Editora;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -22,7 +22,7 @@
             "database"
         ],
         "psr-4": {
-            "editora\\": "app/"
+            "Editora\\": "app/"
         }
     },
     "autoload-dev": {

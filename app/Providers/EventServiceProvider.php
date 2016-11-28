@@ -1,6 +1,6 @@
 <?php
 
-namespace editora\Providers;
+namespace Editora\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'editora\Events\SomeEvent' => [
-            'editora\Listeners\EventListener',
+        'Editora\Events\SomeEvent' => [
+            'Editora\Listeners\EventListener',
         ],
     ];
 

@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => editora\User::class,
+        'model' => Editora\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

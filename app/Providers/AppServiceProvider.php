@@ -1,6 +1,6 @@
 <?php
 
-namespace editora\Providers;
+namespace Editora\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
