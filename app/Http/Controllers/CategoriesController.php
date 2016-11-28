@@ -5,7 +5,6 @@ namespace Editora\Http\Controllers;
 use Editora\Category;
 use Editora\Http\Requests\CategoryRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
