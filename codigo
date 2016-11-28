@@ -1,2 +1,5 @@
 https://github.com/barryvdh/laravel-ide-helper
 composer require doctrine/dbal
+
+https://laravelcollective.com/docs/5.3/html
+composer require "laravelcollective/html":"^5.3.0"
