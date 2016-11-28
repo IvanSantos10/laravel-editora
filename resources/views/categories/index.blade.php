@@ -7,48 +7,27 @@
             {!! Button::primary('Nova categoria')->asLinkTo(route('categories.create')) !!}
         </div>
         <div class="row">
+
             {!! Table::withContents($categories->items())->striped()
                 ->callback('Ações', function ($field, $category){
                     $linkEdit = route('categories.edit', ['category' => $category->id]);
+                    $linkDestroy = route('categories.destroy', ['category' => $category->id]);
+                    $deleteForm = "delete-form-{$category->id}";
+                    $form =  Form::open(['route' => ['categories.destroy', 'category' => $category->id],
+                                'id' => $deleteForm, 'method' => 'DELETE', 'style' => 'display:nome']).
+                                Form::close();
+                    $anchorDestroy = Button::link('Delete')
+                                        ->asLinkTo($linkDestroy)->addAttributes([
+                                            'onclick' => "event.preventDefault(); document.getElementById(\"{$deleteForm}\").submit();"
+                                        ]);
                     return "<ul class=\"list-inline\">".
                             "<li>".Button::link('Editar')->asLinkto($linkEdit)."</li>".
                             "<li>|</li>".
-                            "</ul>";
+                            "<li>$anchorDestroy</li>".
+                            "</ul>".
+                            $form;
                 })
             !!}
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Ações</th>
-                </tr>
-                <tbody>
-                @foreach($categories as $category)
-                    <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
-                        <td>
-                            <ul class="list-inline">
-                                <li>
-                                    <a href="{{ route('categories.edit', ['category' => $category->id]) }}">Editar</a>
-                                </li>
-                                <li>|</li>
-                                <li>
-                                    <?php $deleteForm = "delete-form-{$loop->index}" ?>
-                                    <a href="{{ route('categories.destroy', ['category' => $category->id]) }}"
-                                        onclick="event.preventDefault(); document.getElementById('{{ $deleteForm }}').submit();">Excluir</a>
-                                    {!! Form::open(['route' => ['categories.destroy', 'category' => $category->id],
-                                        'id' => $deleteForm, 'method' => 'DELETE', 'style' => 'display:nome']) !!}
-                                    {!! Form::close() !!}
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-                </thead>
-            </table>
 
             {{ $categories->links() }}
         </div>
