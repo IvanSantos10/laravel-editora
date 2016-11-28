@@ -7,6 +7,15 @@
             {!! Button::primary('Nova categoria')->asLinkTo(route('categories.create')) !!}
         </div>
         <div class="row">
+            {!! Table::withContents($categories->items())->striped()
+                ->callback('Ações', function ($field, $category){
+                    $linkEdit = route('categories.edit', ['category' => $category->id]);
+                    return "<ul class=\"list-inline\">".
+                            "<li>".Button::link('Editar')->asLinkto($linkEdit)."</li>".
+                            "<li>|</li>".
+                            "</ul>";
+                })
+            !!}
             <table class="table table-striped">
                 <thead>
                 <tr>
