@@ -12,13 +12,14 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>Ações</th>
                 </tr>
                 <tbody>
                 @foreach($categories as $category)
                     <tr>
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
-                        <td>Ação</td>
+                        <td><a href="{{ route('categories.edit', ['category' => $category->id]) }}">Editar</a></td>
                     </tr>
                 @endforeach
                 </tbody>
