@@ -19,6 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-route::group(['midllewere' => 'auth'], function (){
+route::group(['middleware' => 'auth'], function (){
    Route::resource('categories', 'CategoriesController', ['except' => 'show']);
 });
