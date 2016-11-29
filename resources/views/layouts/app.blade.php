@@ -51,6 +51,13 @@
         {!! $navbar !!}
         {!! Form::open(['url' => url('/logout'), 'id' => 'logout-form', 'style' => 'display:nome']) !!}
         {!! Form::close() !!}
+
+        @if(Session::has('message'))
+            <div class="container">
+                {!! Alert::success(Session::get('message'))->close() !!}
+            </div>
+        @endif
+
         @yield('content')
     </div>
 
