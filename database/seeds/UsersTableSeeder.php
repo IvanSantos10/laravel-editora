@@ -1,6 +1,6 @@
 <?php
 
-use editora\User;
+use Editora\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder

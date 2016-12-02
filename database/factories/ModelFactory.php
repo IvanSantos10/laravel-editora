@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Editora\User::class, function (Faker\Generator $faker) {
+$factory->define(\Editora\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -26,5 +26,14 @@ $factory->define(Editora\Category::class, function (Faker\Generator $faker) {
 
     return [
         'name' => ucfirst($faker->unique()->word)
+    ];
+});
+
+$factory->define(\Editora\Book::class, function (Faker\Generator $faker) {
+
+    return [
+        'title' => ucfirst($faker->unique()->word),
+        'subtitle' => ucfirst($faker->word),
+        'price' => $faker->randomFloat(2,2,2) ///numberBetween(10, 50)
     ];
 });
