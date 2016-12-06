@@ -10,8 +10,14 @@ class Book extends Model implements TableInterface
     protected $fillable = [
         'title',
         'subtitle',
-        'price'
+        'price',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
     /**
@@ -21,7 +27,7 @@ class Book extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Título', 'Subtítulo', 'Preço'];
+        return ['#', 'Título', 'Subtítulo', 'Preço', 'Autor'];
     }
 
     /**
@@ -33,11 +39,17 @@ class Book extends Model implements TableInterface
      */
     public function getValueForHeader($header)
     {
-        switch ($header){
-            case '#'; return $this->id;
-            case 'Título'; return $this->title;
-            case 'Subtítulo'; return $this->subtitle;
-            case 'Preço'; return $this->price;
+        switch ($header) {
+            case '#';
+                return $this->id;
+            case 'Título';
+                return $this->title;
+            case 'Subtítulo';
+                return $this->subtitle;
+            case 'Preço';
+                return $this->price;
+            case 'Autor';
+                return $this->user->name;
         }
     }
 }

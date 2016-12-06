@@ -13,6 +13,10 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
+        $book = $this->route('book');
+        if($this->method() === 'PUT'){
+            return $book->user_id === auth()->id();
+        }
         return true;
     }
 
@@ -29,7 +33,8 @@ class BookRequest extends FormRequest
         return [
             'title' => "required|max:255|unique:books,title,$id",
             'subtitle' => "required|max:255",
-            'price' => "required"
+            'price' => "required",
+            'user_id' => "required"
         ];
     }
 }

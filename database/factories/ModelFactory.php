@@ -34,6 +34,7 @@ $factory->define(\Editora\Book::class, function (Faker\Generator $faker) {
     return [
         'title' => ucfirst($faker->unique()->word),
         'subtitle' => ucfirst($faker->word),
-        'price' => $faker->randomFloat(2,2,2) ///numberBetween(10, 50)
+        'price' => $faker->randomFloat(2,2,2),
+        'user_id' => 1 ///numberBetween(10, 50)
     ];
 });
