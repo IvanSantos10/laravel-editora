@@ -2,7 +2,7 @@
 
 namespace Editora\Http\Controllers\Auth;
 
-use Editora\User;
+use Editora\Models\User;
 use Validator;
 use Editora\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;

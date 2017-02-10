@@ -1,9 +1,8 @@
 <?php
 
-namespace Editora;
+namespace Editora\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
-use Editora\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model implements TableInterface
@@ -12,14 +11,13 @@ class Book extends Model implements TableInterface
         'title',
         'subtitle',
         'price',
-        'user_id'
+        'author_id'
     ];
 
-    public function user()
+    public function author()
     {
         return $this->belongsTo(User::class);
     }
-
 
     /**
      * A list of headers to be used when a table is displayed
@@ -28,7 +26,7 @@ class Book extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Título', 'Subtítulo', 'Preço', 'Autor'];
+        return ['#', 'Título', 'Autor', 'Preço'];
     }
 
     /**
@@ -43,14 +41,12 @@ class Book extends Model implements TableInterface
         switch ($header) {
             case '#';
                 return $this->id;
+            case 'Autor';
+                return $this->author->name;
             case 'Título';
                 return $this->title;
-            case 'Subtítulo';
-                return $this->subtitle;
             case 'Preço';
                 return $this->price;
-            case 'Autor';
-                return $this->user->name;
         }
     }
 }

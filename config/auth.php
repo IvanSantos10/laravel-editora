@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Editora\User::class,
+            'model' => \Editora\Models\User::class,
         ],
 
         // 'users' => [

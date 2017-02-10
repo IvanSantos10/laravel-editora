@@ -4,7 +4,7 @@ namespace Editora\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BookRequest extends FormRequest
+class BookCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,10 +13,6 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
-        $book = $this->route('book');
-        if($this->method() === 'PUT'){
-            return $book->user_id === auth()->id();
-        }
         return true;
     }
 
@@ -27,14 +23,10 @@ class BookRequest extends FormRequest
      */
     public function rules()
     {
-        $book = $this->route('book');
-        $id = $book ? $book->id : null;
-
         return [
-            'title' => "required|max:255|unique:books,title,$id",
+            'title' => "required|max:255",
             'subtitle' => "required|max:255",
-            'price' => "required",
-            'user_id' => "required"
+            'price' => "required|numeric"
         ];
     }
 }

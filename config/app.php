@@ -164,12 +164,13 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
 
-        /*
+         /*
          * Package Service Providers...
          */
         //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
         //
 
         /*
@@ -180,6 +181,7 @@ return [
         // Editora\Providers\BroadcastServiceProvider::class,
         Editora\Providers\EventServiceProvider::class,
         Editora\Providers\RouteServiceProvider::class,
+        Editora\Providers\RepositoryServiceProvider::class
 
     ],
 

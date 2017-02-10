@@ -11,7 +11,8 @@
         "doctrine/dbal": "^2.5",
         "laravelcollective/html": "^5.3.0",
         "caouecs/laravel-lang": "~3.0",
-        "patricktalmadge/bootstrapper": "^5.9"
+        "patricktalmadge/bootstrapper": "^5.9",
+        "prettus/l5-repository": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
