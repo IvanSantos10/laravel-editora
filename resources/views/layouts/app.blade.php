@@ -23,47 +23,56 @@
 <body>
 <div id="app">
     <?php
-        $navbar = Navbar::withBrand(config('app.name'), url('/'))->inverse();
-        if (Auth::check()) {
-            $links = Navigation::links([
-                    [
-                            'link' => route('categories.index'),
-                            'title' => 'Categoria'
-                    ],
-                    [
-                            'link' => route('books.index'),
-                            'title' => 'Livros'
-                    ]
-            ]);
-            $logout = Navigation::links([
-                    [
-                            Auth::user()->name,
-                            [
-                                    [
-                                            'link' => url('/logout'),
-                                            'title' => 'Logout',
-                                            'linkAttributes' => [
-                                                    'onclick' => "event.preventDefault();document.getElementById(\"logout-form\").submit();"
-                                            ]
-                                    ]
-                            ]
-                    ]
-            ])->right();
-            $navbar->withContent($links)->withContent($logout);
-        }
-        ?>
-        {!! $navbar !!}
-        {!! Form::open(['url' => url('/logout'), 'id' => 'logout-form', 'style' => 'display:nome']) !!}
-        {!! Form::close() !!}
+    $navbar = Navbar::withBrand(config('app.name'), url('/'))->inverse();
+    if (Auth::check()) {
+        $links = Navigation::links([
+                [
+                        'link' => route('categories.index'),
+                        'title' => 'Categoria'
+                ],
+                [
+                        'Livros',
+                        [
+                                [
+                                        'link' => route('books.index'),
+                                        'title' => 'Listar'
+                                ],
+                                [
+                                        'link' => route('trashed.books.index'),
+                                        'title' => 'Lixeira'
+                                ]
+                        ]
+                ]
+        ]);
+        $logout = Navigation::links([
+                [
+                        Auth::user()->name,
+                        [
+                                [
+                                        'link' => url('/logout'),
+                                        'title' => 'Logout',
+                                        'linkAttributes' => [
+                                                'onclick' => "event.preventDefault();document.getElementById(\"logout-form\").submit();"
+                                        ]
+                                ]
+                        ]
+                ]
+        ])->right();
+        $navbar->withContent($links)->withContent($logout);
+    }
+    ?>
+    {!! $navbar !!}
+    {!! Form::open(['url' => url('/logout'), 'id' => 'logout-form', 'style' => 'display:nome']) !!}
+    {!! Form::close() !!}
 
-        @if(Session::has('message'))
-            <div class="container">
-                {!! Alert::success(Session::get('message'))->close() !!}
-            </div>
-        @endif
+    @if(Session::has('message'))
+        <div class="container">
+            {!! Alert::success(Session::get('message'))->close() !!}
+        </div>
+    @endif
 
-        @yield('content')
-    </div>
+    @yield('content')
+</div>
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>

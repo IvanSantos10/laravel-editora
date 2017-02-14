@@ -11,6 +11,10 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Editora\Models\Book::class,50)->create();
+        $categories = \Editora\Models\Category::all();
+        factory(\Editora\Models\Book::class,20)->create()->each(function ($book) use($categories){
+            $categoriesRandom = $categories->random(4);
+            $book->categories()->sync($categoriesRandom->pluck('id')->all());
+        });
     }
 }

@@ -10,3 +10,5 @@ composer require patricktalmadge/bootstrapper
 https://github.com/andersao/l5-repository
 composer require prettus/l5-repository
 
+php artisan migrate:refresh --seed --verbose -- lista detalhada
+

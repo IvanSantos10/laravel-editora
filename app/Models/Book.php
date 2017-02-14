@@ -3,10 +3,16 @@
 namespace Editora\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
+use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model implements TableInterface
 {
+    use FormAccessible, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'title',
         'subtitle',
@@ -17,6 +23,16 @@ class Book extends Model implements TableInterface
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function formCategoriesAttribute()
+    { //dd($this->categories->pluck('id'));
+        return $this->categories->pluck('id')->all();
     }
 
     /**

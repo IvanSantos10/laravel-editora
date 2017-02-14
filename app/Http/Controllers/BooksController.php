@@ -6,6 +6,8 @@ use Editora\Book;
 use Editora\Http\Requests\BookCreateRequest;
 use Editora\Http\Requests\BookUpdateRequest;
 use Editora\Repositories\BookRepository;
+use Editora\Repositories\CategoryRepository;
+use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
@@ -13,13 +15,18 @@ class BooksController extends Controller
      * @var BookRepository
      */
     private $repository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
     /**
      * BooksController constructor.
      */
-    public function __construct(BookRepository $repository)
+    public function __construct(BookRepository $repository, CategoryRepository $categoryRepository)
     {
         $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -27,10 +34,11 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('search');
         $books = $this->repository->paginate(10);
-        return view('books.index', compact('books'));
+        return view('books.index', compact('books', 'search'));
     }
 
     /**
@@ -40,7 +48,8 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $categories = $this->categoryRepository->lists('name', 'id'); //pluck
+        return view('books.create', compact('categories'));
     }
 
     /**
@@ -68,9 +77,9 @@ class BooksController extends Controller
     public function edit($id)
     {
         $book = $this->repository->find($id);
-        return view('books.edit', compact('book'));
+        $categories = $this->categoryRepository->lists('name', 'id'); //pluck
+        return view('books.edit', compact('book', 'categories'));
     }
-
     /**
      * Update the specified resource in storage.
      *
