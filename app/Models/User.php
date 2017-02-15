@@ -2,7 +2,7 @@
 
 namespace Editora\Models;
 
-use Editora\Book;
+use Editora\Models\Book;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

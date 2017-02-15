@@ -43,4 +43,15 @@ class BooksTrashedController extends Controller
 
         return view('trashed.books.show', compact('book'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $this->repository->onlyTrashed();
+        $this->repository->restore($id);
+
+        $url = $request->get('redirect_to', route('trashed.books.index'));
+        $request->session()->flash('message', 'Livro restaurado com sucesso.');
+
+        return redirect()->to($url);
+    }
 }

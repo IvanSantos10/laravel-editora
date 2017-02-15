@@ -13,7 +13,8 @@ use Editora\Models\Book;
  */
 class BookRepositoryEloquent extends BaseRepository implements BookRepository
 {
-    use CriteriaOnlyTrashedTrait;
+    use CriteriaOnlyTrashedTrait, RepositoryRestoreTrait;
+
 
     protected $fieldSearchable = [
         'title' => 'like',
