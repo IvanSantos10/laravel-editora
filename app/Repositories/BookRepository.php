@@ -2,7 +2,7 @@
 
 namespace Editora\Repositories;
 
-use Editora\Criteria\CriteriaOnlyTrashedInterface;
+use Editora\Criteria\CriteriaTrashedInterface;
 use Prettus\Repository\Contracts\RepositoryCriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -13,7 +13,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface BookRepository extends
     RepositoryInterface,
     RepositoryCriteriaInterface,
-    CriteriaOnlyTrashedInterface,
+    CriteriaTrashedInterface,
     RepositoryRestoreInterface
 {
     //

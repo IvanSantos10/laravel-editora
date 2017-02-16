@@ -2,6 +2,8 @@
 
 namespace Editora\Repositories;
 
+use Barryvdh\Reflection\DocBlock\Type\Collection;
+use Editora\Criteria\CriteriaTrashedTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Editora\Models\Category;
@@ -12,7 +14,7 @@ use Editora\Models\Category;
  */
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
-    use BaseRepositoryTrait;
+    use BaseRepositoryTrait, CriteriaTrashedTrait;
     /**
      * Specify Model class name
      *
@@ -31,5 +33,16 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * @param $column
+     * @param null $key
+     */
+    public function listsWithMutators($column, $key = null)
+    {
+        /** @var Collection $collection */
+        $collection = $this->all();
+        return $collection->pluck($column, $key);
     }
 }

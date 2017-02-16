@@ -2,7 +2,7 @@
 
 namespace Editora\Repositories;
 
-use Editora\Criteria\CriteriaOnlyTrashedTrait;
+use Editora\Criteria\CriteriaTrashedTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Editora\Models\Book;
@@ -13,7 +13,7 @@ use Editora\Models\Book;
  */
 class BookRepositoryEloquent extends BaseRepository implements BookRepository
 {
-    use CriteriaOnlyTrashedTrait, RepositoryRestoreTrait;
+    use CriteriaTrashedTrait, RepositoryRestoreTrait;
 
 
     protected $fieldSearchable = [

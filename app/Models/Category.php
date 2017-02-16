@@ -21,6 +21,11 @@ class Category extends Model implements TableInterface
         return $this->belongsToMany(Book::class);
     }
 
+    public function getNameTrashedAttribute()
+    {
+        return $this->trashed() ? "{$this->name} (Inativa)" : $this->name;
+    }
+
     /**
      * A list of headers to be used when a table is displayed
      *
@@ -40,9 +45,11 @@ class Category extends Model implements TableInterface
      */
     public function getValueForHeader($header)
     {
-        switch ($header){
-            case '#'; return $this->id;
-            case 'Nome'; return $this->name;
+        switch ($header) {
+            case '#';
+                return $this->id;
+            case 'Nome';
+                return $this->name;
         }
     }
 }
