@@ -1,10 +1,11 @@
 <?php
 
-namespace Editora\Http\Controllers;
+namespace CodeEduBook\Http\Controllers;
 
-use Editora\Models\Category;
-use Editora\Http\Requests\CategoryRequest;
-use Editora\Repositories\CategoryRepository;
+use CodeEduBook\Models\Category;
+use Editora\Http\Controllers\Controller;
+use CodeEduBook\Http\Requests\CategoryRequest;
+use CodeEduBook\Repositories\CategoryRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoriesController extends Controller
@@ -32,7 +33,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = $this->repository->paginate(10);
-        return view('categories.index', compact('categories'));
+        return view('codeedubook::categories.index', compact('categories'));
     }
 
     /**
@@ -42,7 +43,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('codeedubook::categories.create');
     }
 
     /**
@@ -69,13 +70,13 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = $this->repository->find($id);
-        return view('categories.edit', compact('category'));
+        return view('codeedubook::categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CategoryRequest|\Illuminate\Http\Request $request
+     * @param \CodeEduBook\Http\Requests\CategoryRequest|\Illuminate\Http\Request $request
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param Category $category

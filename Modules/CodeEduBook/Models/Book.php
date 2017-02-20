@@ -1,9 +1,11 @@
 <?php
 
-namespace Editora\Models;
+namespace CodeEduBook\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Collective\Html\Eloquent\FormAccessible;
+use CodeEduBook\Models\Category;
+use Editora\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,11 +29,11 @@ class Book extends Model implements TableInterface
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withTrashed( );
+        return $this->belongsToMany(Category::class)->withTrashed();
     }
 
     public function formCategoriesAttribute()
-    { //dd($this->categories->pluck('id'));
+    {
         return $this->categories->pluck('id')->all();
     }
 

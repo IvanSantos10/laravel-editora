@@ -1,11 +1,13 @@
 <?php
 
-namespace Editora\Repositories;
+namespace CodeEduBook\Repositories;
 
+use CodeEduBook\Repositories\BookRepository;
 use Editora\Criteria\CriteriaTrashedTrait;
+use Editora\Repositories\RepositoryRestoreTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Editora\Models\Book;
+use CodeEduBook\Models\Book;
 
 /**
  * Class BookRepositoryEloquent

@@ -2,7 +2,7 @@
 
 namespace Editora\Models;
 
-use Editora\Models\Book;
+use CodeEduBook\Models\Book;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -29,6 +29,6 @@ class User extends Authenticatable
     ];
 
     public function book(){
-        return $this->hasMany(Book::class);
+        return $this->hasMany(\CodeEduBook\Models\Book::class);
     }
 }

@@ -11,6 +11,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Editora\Models\Category::class,50)->create();
+        factory(\CodeEduBook\Models\Category::class,50)->create();
     }
 }

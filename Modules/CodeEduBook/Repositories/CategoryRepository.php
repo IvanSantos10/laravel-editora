@@ -1,6 +1,6 @@
 <?php
 
-namespace Editora\Repositories;
+namespace CodeEduBook\Repositories;
 
 use Editora\Criteria\CriteriaTrashedInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;

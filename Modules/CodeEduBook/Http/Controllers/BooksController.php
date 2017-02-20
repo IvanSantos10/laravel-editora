@@ -1,18 +1,19 @@
 <?php
 
-namespace Editora\Http\Controllers;
+namespace CodeEduBook\Http\Controllers;
 
 use Editora\Book;
-use Editora\Http\Requests\BookCreateRequest;
-use Editora\Http\Requests\BookUpdateRequest;
-use Editora\Repositories\BookRepository;
-use Editora\Repositories\CategoryRepository;
+use Editora\Http\Controllers\Controller;
+use CodeEduBook\Http\Requests\BookCreateRequest;
+use CodeEduBook\Http\Requests\BookUpdateRequest;
+use CodeEduBook\Repositories\BookRepository;
+use CodeEduBook\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
     /**
-     * @var BookRepository
+     * @var \CodeEduBook\Repositories\BookRepository
      */
     private $repository;
     /**
@@ -38,7 +39,7 @@ class BooksController extends Controller
     {
         $search = $request->get('search');
         $books = $this->repository->paginate(10);
-        return view('books.index', compact('books', 'search'));
+        return view('codeedubook::books.index', compact('books', 'search'));
     }
 
     /**
@@ -49,7 +50,7 @@ class BooksController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->lists('name', 'id'); //pluck
-        return view('books.create', compact('categories'));
+        return view('codeedubook::books.create', compact('categories'));
     }
 
     /**
@@ -78,8 +79,8 @@ class BooksController extends Controller
     {
         $book = $this->repository->find($id);
         $this->categoryRepository->withTrashed();
-        $categories = $this->categoryRepository->listsWithMutators('name_trashed', 'id'); //pluck
-        return view('books.edit', compact('book', 'categories'));
+        $categories = $this->categoryRepository->listsWithMutators('name_trashed', 'id');
+        return view('codeedubook::books.edit', compact('book', 'categories'));
     }
     /**
      * Update the specified resource in storage.

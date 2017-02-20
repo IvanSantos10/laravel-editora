@@ -1,8 +1,9 @@
 <?php
 
-namespace Editora\Models;
+namespace CodeEduBook\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
+use CodeEduBook\Models\Book;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

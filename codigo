@@ -12,3 +12,13 @@ composer require prettus/l5-repository
 
 php artisan migrate:refresh --seed --verbose -- lista detalhada
 
+
+Modulo
+php artisan module:use CodeEduBook
+
+php artisan module:make-migration create_testes_table
+
+php artisan module:make-provider RepositoryServiceProvider
+
+
+

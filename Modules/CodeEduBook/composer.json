@@ -1,0 +1,15 @@
+{
+    "name": "codeedu/codeedubook",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ivanildo Santos",
+            "email": "ivannildosantos@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CodeEduBook\\": ""
+        }
+    }
+}
