@@ -2,11 +2,9 @@
 
 namespace CodeEduBook\Http\Controllers;
 
-use CodeEduBook\Models\Category;
-use Editora\Http\Controllers\Controller;
 use CodeEduBook\Http\Requests\CategoryRequest;
 use CodeEduBook\Repositories\CategoryRepository;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -52,9 +50,9 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        Category::create($request->all());
+        $this->repository->create($request->all());
         $url = $request->get('redirect_to', route('categories.index'));
         $request->session()->flash('message', 'Categoria cadastrada com sucesso.');
         return redirect()->to($url);
@@ -82,7 +80,7 @@ class CategoriesController extends Controller
      * @internal param Category $category
      * @internal param int $id
      */
-    public function update(CategoryRequest $request, $id )
+    public function update(Request $request, $id )
     {
         $this->repository->update($request->all(), $id);
         $url = $request->get('redirect_to', route('categories.index'));
