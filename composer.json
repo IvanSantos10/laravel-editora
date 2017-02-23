@@ -37,7 +37,8 @@
     ],
     "psr-4": {
       "Editora\\": "app/",
-      "CodeEduBook\\": "Modules/CodeEduBook"
+      "CodeEduBook\\": "Modules/CodeEduBook",
+      "CodeEduUser\\": "Modules/CodeEduUser"
     }
   },
   "autoload-dev": {

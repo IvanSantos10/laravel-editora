@@ -5,7 +5,7 @@ namespace CodeEduBook\Models;
 use Bootstrapper\Interfaces\TableInterface;
 use Collective\Html\Eloquent\FormAccessible;
 use CodeEduBook\Models\Category;
-use Editora\Models\User;
+use CodeEduUser\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

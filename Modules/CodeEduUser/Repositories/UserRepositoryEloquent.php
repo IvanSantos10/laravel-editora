@@ -1,10 +1,10 @@
 <?php
 
-namespace Editora\Repositories;
+namespace CodeEduUser\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Editora\Models\User;
+use CodeEduUser\Models\User;
 
 /**
  * Class UserRepositoryEloquent

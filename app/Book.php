@@ -3,7 +3,7 @@
 namespace Editora;
 
 use Bootstrapper\Interfaces\TableInterface;
-use Editora\Models\User;
+use CodeEduUser\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model implements TableInterface
