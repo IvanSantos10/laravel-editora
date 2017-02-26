@@ -23,7 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\CodeEduUser\Repositories\UserRepository::class, \CodeEduBook\Repositories\UserRepositoryEloquent::class);
+        //$this->app->bind(\CodeEduUser\Repositories\UserRepository::class, \CodeEduUser\Repositories\UserRepositoryEloquent::class);
         //:end-bindings:
     }
 }
