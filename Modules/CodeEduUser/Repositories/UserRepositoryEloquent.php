@@ -12,6 +12,19 @@ use CodeEduUser\Models\User;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+    public function create(array $attributes)
+    {
+        $attributes['password'] = User::generatePassword();
+        return parent::create($attributes);
+    }
+
+    public function update(array $attributes, $id)
+    {
+        $attributes = array_except($attributes, 'password');
+        return parent::update($attributes, $id);
+    }
+
+
     /**
      * Specify Model class name
      *
@@ -22,7 +35,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return User::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria

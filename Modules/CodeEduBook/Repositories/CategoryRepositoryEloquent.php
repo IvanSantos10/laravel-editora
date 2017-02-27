@@ -3,7 +3,6 @@
 namespace CodeEduBook\Repositories;
 
 use Barryvdh\Reflection\DocBlock\Type\Collection;
-use CodeEduBook\Repositories\CategoryRepository;
 use Editora\Criteria\CriteriaTrashedTrait;
 use Editora\Repositories\BaseRepositoryTrait;
 use Prettus\Repository\Eloquent\BaseRepository;

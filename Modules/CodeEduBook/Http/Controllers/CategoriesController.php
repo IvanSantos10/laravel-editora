@@ -47,10 +47,10 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \CodeEduBook\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $this->repository->create($request->all());
         $url = $request->get('redirect_to', route('categories.index'));
@@ -80,7 +80,7 @@ class CategoriesController extends Controller
      * @internal param Category $category
      * @internal param int $id
      */
-    public function update(Request $request, $id )
+    public function update(CategoryRequest $request, $id )
     {
         $this->repository->update($request->all(), $id);
         $url = $request->get('redirect_to', route('categories.index'));
