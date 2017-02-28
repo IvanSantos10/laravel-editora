@@ -3,6 +3,7 @@
 namespace CodeEduUser\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Jrean\UserVerification\UserVerificationServiceProvider;
 
 class CodeEduUserServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,7 @@ class CodeEduUserServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(UserVerificationServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }

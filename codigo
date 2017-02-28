@@ -21,4 +21,7 @@ php artisan module:make-migration create_testes_table
 php artisan module:make-provider RepositoryServiceProvider
 
 
+https://github.com/jrean/laravel-user-verification   confirmar user cadastrado
+php artisa vendor:publish --provider="Jrean\UserVerification\UserVerificationServiceProvider" --tag=migrations
+
 
