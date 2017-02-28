@@ -26,5 +26,17 @@ class UserConfirmationController extends Controller
         $this->repository = $repository;
     }
 
+    public function redirectAfterVerification()
+    {
+        $this->loginUser();
+        return route('codeeduuser.user_settings.edit');
+    }
+
+    private function loginUser()
+    {
+        $email = \Request::get('email');
+        $user = $this->repository->findByField('email', $email)->first();
+        \Auth::login($user);
+    }
 
 }

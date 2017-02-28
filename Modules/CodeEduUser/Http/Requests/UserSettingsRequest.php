@@ -23,9 +23,8 @@ class UserSettingsRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('user');
         return [
-            'name' => "required|min:6|max:255|confirmed"
+            'password' => "required|min:6|max:255|confirmed"
         ];
     }
 }
