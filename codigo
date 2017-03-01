@@ -24,4 +24,6 @@ php artisan module:make-provider RepositoryServiceProvider
 https://github.com/jrean/laravel-user-verification   confirmar user cadastrado
 php artisa vendor:publish --provider="Jrean\UserVerification\UserVerificationServiceProvider" --tag=migrations
 
+php artisan vendor:publish --tag=laravel-notifications  - gera notification de email
+
 

@@ -2,6 +2,7 @@
 
 namespace CodeEduUser\Http\Controllers;
 
+use CodeEduUser\Http\Requests\UserDaleteRequest;
 use CodeEduUser\Http\Requests\UserRequest;
 use CodeEduUser\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -96,12 +97,13 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param UserDaleteRequest $request
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param User $user
      * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(UserDaleteRequest $request, $id)
     {
         $this->repository->delete($id);
         \Session::flash('message', 'Usuário excluído com sucesso.');
