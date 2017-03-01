@@ -2,14 +2,16 @@
 
 namespace CodeEduUser\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping\Controller as ControllerAnnotation;
 use CodeEduUser\Http\Requests\UserDaleteRequest;
 use CodeEduUser\Http\Requests\UserRequest;
 use CodeEduUser\Repositories\UserRepository;
-use Illuminate\Http\Request;
+
 
 /**
  * Class UsersController
  * @package CodeEduUser\Http\Controllers
+ * @ControllerAnnotation(name="user-admin", description="Administracão de Usuários")
  */
 class UsersController extends Controller
 {
