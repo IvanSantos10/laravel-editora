@@ -3,6 +3,7 @@
 namespace CodeEduUser\Http\Controllers;
 
 use CodeEduUser\Annotations\Mapping\Controller as ControllerAnnotation;
+use CodeEduUser\Annotations\Mapping\Action as ActionAnnotation;
 use CodeEduUser\Http\Requests\UserDaleteRequest;
 use CodeEduUser\Http\Requests\UserRequest;
 use CodeEduUser\Repositories\UserRepository;
@@ -32,7 +33,7 @@ class UsersController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     * @ActionAnnotation(name="list", description="Ver listagem de usuários")
      * @return \Illuminate\Http\Response
      */
     public function index()
