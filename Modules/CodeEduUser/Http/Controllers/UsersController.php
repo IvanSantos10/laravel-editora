@@ -4,7 +4,7 @@ namespace CodeEduUser\Http\Controllers;
 
 use CodeEduUser\Annotations\Mapping\Controller as ControllerAnnotation;
 use CodeEduUser\Annotations\Mapping\Action as ActionAnnotation;
-use CodeEduUser\Http\Requests\UserDaleteRequest;
+use CodeEduUser\Http\Requests\UserDeleteRequest;
 use CodeEduUser\Http\Requests\UserRequest;
 use CodeEduUser\Repositories\UserRepository;
 
@@ -44,7 +44,7 @@ class UsersController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @ActionAnnotation(name="create", description="criacão de usuários")
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -54,7 +54,7 @@ class UsersController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @ActionAnnotation(name="store", description="Cadastrar usuários")
      * @param  \CodeEduUser\Http\Requests\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -100,13 +100,13 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param UserDaleteRequest $request
+     * @param UserDeleteRequest $request
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param User $user
      * @internal param int $id
      */
-    public function destroy(UserDaleteRequest $request, $id)
+    public function destroy(UserDeleteRequest $request, $id)
     {
         $this->repository->delete($id);
         \Session::flash('message', 'Usuário excluído com sucesso.');

@@ -4,7 +4,7 @@ namespace CodeEduUser\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserDaleteRequest extends FormRequest
+class UserDeleteRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
