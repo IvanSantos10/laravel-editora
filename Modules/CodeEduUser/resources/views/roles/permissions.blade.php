@@ -25,7 +25,9 @@
                                     <li>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"/> {{$permission->resource_description}}
+                                                <input type="checkbox" name="permissions[]" value="{{$permission->id}}"
+                                                        {{ $role->permissions->contains('id', $permission->id) ? 'checked="checked"' : '' }}/>
+                                                        {{$permission->resource_description}}
                                             </label>
                                         </div>
                                     </li>
