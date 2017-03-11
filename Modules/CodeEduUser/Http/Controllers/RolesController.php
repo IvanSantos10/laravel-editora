@@ -4,6 +4,7 @@ namespace CodeEduUser\Http\Controllers;
 
 use CodeEduUser\Annotations\Mapping\Controller as ControllerAnnotation;
 use CodeEduUser\Annotations\Mapping\Action as ActionAnnotation;
+use CodeEduUser\Criteria\FindPermissionsGroupCriteria;
 use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
 use CodeEduUser\Http\Requests\RoleDeleteRequest;
 use CodeEduUser\Http\Requests\RoleRequest;
@@ -31,6 +32,7 @@ class RolesController extends Controller
     /**
      * RolesController constructor.
      * @param RoleRepository $repository
+     * @param PermissionRepository $permissionRepository
      */
     public function __construct(RoleRepository $repository, PermissionRepository $permissionRepository)
     {
@@ -128,9 +130,15 @@ class RolesController extends Controller
     public function editPermission($id)
     {
         $role = $this->repository->find($id);
+
         $this->permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
         $permissions = $this->permissionRepository->all();
-        return view('codeeduuser::roles.permissions', compact('role', 'permissions'));
+
+        $this->permissionRepository->resetCriteria();
+        $this->permissionRepository->pushCriteria(new FindPermissionsGroupCriteria());
+        $permissionsGroup = $this->permissionRepository->all(['name', 'description']);
+
+        return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
     }
 
     public function updatePermission($id)
