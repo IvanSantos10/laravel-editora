@@ -10,4 +10,9 @@
     {!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
     {!! Form::text('email', null, ['class' => 'form-control']) !!}
     {!! Form::error('email', $errors) !!}
+
+{!! Html::openFormGroup('roles.*', $errors) !!}
+    {!! Form::label('roles[]', 'Papel de usuário', ['class' => 'control-label']) !!}
+    {!! Form::select('roles[]', $roles, null, ['class' => 'form-control', 'multiple' => true]) !!}
+    {!! Form::error('roles.*', $errors) !!}
 {!! Html::closeFormGroup() !!}

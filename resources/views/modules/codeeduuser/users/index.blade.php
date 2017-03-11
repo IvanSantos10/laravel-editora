@@ -17,12 +17,14 @@
                     $form =  Form::open(['route' => ['codeeduuser.users.destroy', 'user' => $user->id],
                                 'id' => $deleteForm, 'method' => 'DELETE', 'style' => 'display:nome']).
                                 Form::close();
-                    $anchorDestroy = Button::link('Delete')
+                    $anchorDestroy = Button::link('Excluir')
                                         ->asLinkTo($linkDestroy)->addAttributes([
                                             'onclick' => "event.preventDefault(); document.getElementById(\"{$deleteForm}\").submit();"
                                         ]);
-                    $anchorFlag = '<a title="Não é possivel excluir o próprio usuário">Excluir</a>';
-                    $anchorDestroy = $user->id == \Auth::user()->id ? $anchorFlag : $anchorDestroy;
+                    if($user->id == \Auth::user()->id){
+                        $anchorDestroy->disable();
+                    }
+
                     return "<ul class=\"list-inline\">".
                             "<li>".Button::link('Editar')->asLinkto($linkEdit)."</li>".
                             "<li>|</li>".

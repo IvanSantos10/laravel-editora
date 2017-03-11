@@ -3,6 +3,7 @@
 namespace CodeEduUser\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
+use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class  User extends Authenticatable implements TableInterface
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, FormAccessible;
 
     protected $dates = ['deleted_at'];
     /**
@@ -22,6 +23,10 @@ class  User extends Authenticatable implements TableInterface
         'name', 'email', 'password',
     ];
 
+    public function formRolesAttribute()
+    {
+        return $this->roles->pluck('id')->all();
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -48,7 +53,7 @@ class  User extends Authenticatable implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Nome', 'E-mail'];
+        return ['#', 'Nome', 'E-mail', 'Roles'];
     }
 
     /**
@@ -67,6 +72,8 @@ class  User extends Authenticatable implements TableInterface
                 return $this->name;
             case 'E-mail';
                 return $this->email;
+            case 'Roles';
+                return $this->roles->implode('name', ' |  ');
         }
     }
 

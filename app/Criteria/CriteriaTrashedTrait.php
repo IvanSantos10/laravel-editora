@@ -13,7 +13,7 @@ trait CriteriaTrashedTrait
 
     public function withTrashed()
     {
-        $this->pushCriteria(FindWithTrashedCriteria::class);
+        $this->pushCriteria(FindPermissionsResourceCriteria::class);
         return $this;
     }
 }
