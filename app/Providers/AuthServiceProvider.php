@@ -2,9 +2,6 @@
 
 namespace Editora\Providers;
 
-use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
-use CodeEduUser\Repositories\PermissionRepository;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -30,25 +27,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        \Gate::define('update-book', function ($user, $book) {
-            return $user->id == $book->author->id;
-        });
-
-        \Gate::before(function ($user, $ability) {
-            if( $user->isAdmin()){
-                return true;
-            }
-        });
-
-        $permissionRepository = app(PermissionRepository::class);
-        $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
-        $permissions = $permissionRepository->all();
-        foreach ($permissions as $p){
-            \Gate::define("{$p->name}/{$p->resource_name}", function($user) use($p){
-               return $user->hasRole($p->roles);
-            });
-        }
-
     }
 }
