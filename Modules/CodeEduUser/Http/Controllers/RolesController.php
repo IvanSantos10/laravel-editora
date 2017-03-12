@@ -2,8 +2,7 @@
 
 namespace CodeEduUser\Http\Controllers;
 
-use CodeEduUser\Annotations\Mapping\Controller as ControllerAnnotation;
-use CodeEduUser\Annotations\Mapping\Action as ActionAnnotation;
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduUser\Criteria\FindPermissionsGroupCriteria;
 use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
 use CodeEduUser\Http\Requests\PermissionRequest;
@@ -17,7 +16,7 @@ use Doctrine\DBAL\Query\QueryException;
 /**
  * Class RolesController
  * @package CodeEduUser\Http\Controllers
- * @ControllerAnnotation(name="user-admin", description="Administracão de Funções")
+ * @Permission\Controller(name="roles-admin", description="Administracão de pápeis de usuários")
  */
 class RolesController extends Controller
 {
@@ -44,7 +43,7 @@ class RolesController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @ActionAnnotation(name="list", description="Ver listagem de usuários")
+     * @Permission\Action(name="list", description="Listar pápeis de usuários")
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -55,7 +54,7 @@ class RolesController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @ActionAnnotation(name="create", description="criacão de usuários")
+     * @Permission\Action(name="create", description="Cadastrar pápeis de usuários")
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -65,7 +64,7 @@ class RolesController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @ActionAnnotation(name="store", description="Cadastrar usuários")
+     * @Permission\Action(name="create", description="Cadastrar pápeis de usuários")
      * @param  \CodeEduUser\Http\Requests\RoleRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -80,6 +79,7 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @Permission\Action(name="edit", description="Editar pápeis de usuários")
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param Role $role
@@ -93,6 +93,7 @@ class RolesController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @Permission\Action(name="edit", description="Editar pápeis de usuários")
      * @param \CodeEduUser\Http\Requests\RoleRequest|\Illuminate\Http\Request $request
      * @param $id
      * @return \Illuminate\Http\Response
@@ -111,6 +112,7 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @Permission\Action(name="destroy", description="Excluir pápeis de usuários")
      * @param RoleRequest $request
      * @param $id
      * @return \Illuminate\Http\Response
