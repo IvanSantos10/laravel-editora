@@ -2,7 +2,7 @@
 
 Route::group([
     'as' => 'codeeduuser.',
-    'middleware' => ['auth', config('codeeduuser.middleware.isVerified')]
+    'middleware' => ['auth', config('codeeduuser.middleware.isVerified'), 'auth.resource']
 ], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'can:user-admin'], function () {
         Route::resource('users', 'UsersController');
