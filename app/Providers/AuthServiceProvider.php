@@ -2,9 +2,15 @@
 
 namespace Editora\Providers;
 
+use CodeEduUser\Criteria\FindPermissionsResourceCriteria;
+use CodeEduUser\Repositories\PermissionRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Class AuthServiceProvider
+ * @package Editora\Providers
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -34,5 +40,15 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        $permissionRepository = app(PermissionRepository::class);
+        $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+        $permissions = $permissionRepository->all();
+        foreach ($permissions as $p){
+            \Gate::define("{$p->name}/{$p->resource_name}", function($user) use($p){
+               return $user->hasRole($p->roles);
+            });
+        }
+
     }
 }

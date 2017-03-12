@@ -2,9 +2,9 @@
 
 Route::group([
     'as' => 'codeeduuser.',
-    'middleware' => ['auth', config('codeeduuser.middleware.isVerified'), 'auth.resource']
+    'middleware' => ['auth', config('codeeduuser.middleware.isVerified')]
 ], function () {
-    Route::group(['prefix' => 'admin', 'middleware' => 'can:user-admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth.resource'], function () {
         Route::resource('users', 'UsersController');
         Route::resource('roles', 'RolesController');
         Route::get('roles/{role}/permissions', "RolesController@editPermission")->name('roles.permissions.edit');
