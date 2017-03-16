@@ -30,14 +30,24 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissionRepository = app(PermissionRepository::class);
-        $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
-        $permissions = $permissionRepository->all();
-        foreach ($permissions as $p){
-            \Gate::define("{$p->name}/{$p->resource_name}", function($user) use($p){
-               return $user->hasRole($p->roles);
-            });
-        }
+        //retornou true - autorizado
+        //retornou false - não autorizado
+        //retornou void - vai executar a habilidade em questão
+        \Gate::before(function ($user, $ability){
+           if ($user->isAdmin()) {
+               return true;
+           }
+        });
 
+        if (!app()->runningInConsole() || app()->runningUnitTests()) {
+            $permissionRepository = app(PermissionRepository::class);
+            $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
+            $permissions = $permissionRepository->all();
+            foreach ($permissions as $p) {
+                \Gate::define("{$p->name}/{$p->resource_name}", function ($user) use ($p) {
+                    return $user->hasRole($p->roles);
+                });
+            }
+        }
     }
 }
