@@ -9,6 +9,9 @@ use CodeEduUser\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property mixed author_id
+ */
 class Book extends Model implements TableInterface
 {
     use FormAccessible, SoftDeletes;

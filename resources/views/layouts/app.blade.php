@@ -25,7 +25,7 @@
     <?php
     $navbar = Navbar::withBrand(config('app.name'), url('/'))->inverse();
     if (Auth::check()) {
-        $links = Navigation::links([
+        $arrayLins = [
                 [
                         'link' => route('categories.index'),
                         'title' => 'Categoria'
@@ -43,20 +43,24 @@
                                 ]
                         ]
                 ],
+
+        ];
+        if (Auth::user()->can('users-admin/list')) {
+            $arrayLins [] = [
+                'Usuários',
                 [
-                        'Usuários',
                         [
-                                [
-                                        'link' => route('codeeduuser.users.index'),
-                                        'title' => 'Usuários'
-                                ],
-                                [
-                                        'link' => route('codeeduuser.roles.index'),
-                                        'title' => 'Papel de usuário'
-                                ]
+                                'link' => route('codeeduuser.users.index'),
+                                'title' => 'Usuários'
+                        ],
+                        [
+                                'link' => route('codeeduuser.roles.index'),
+                                'title' => 'Papel de usuário'
                         ]
                 ]
-        ]);
+            ];
+        }
+        $links = Navigation::links($arrayLins);
         $logout = Navigation::links([
                 [
                         Auth::user()->name,

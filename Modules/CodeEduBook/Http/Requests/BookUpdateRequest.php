@@ -2,9 +2,7 @@
 
 namespace CodeEduBook\Http\Requests;
 
-use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Repositories\BookRepository;
-use Illuminate\Foundation\Http\FormRequest;
 
 class BookUpdateRequest extends BookCreateRequest
 {
@@ -15,12 +13,12 @@ class BookUpdateRequest extends BookCreateRequest
 
     /**
      * BookUpdateRequest constructor.
+     * @param BookRepository $repository
      */
     public function __construct(BookRepository $repository)
     {
         $this->repository = $repository;
     }
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -35,7 +33,8 @@ class BookUpdateRequest extends BookCreateRequest
         }
 
         $book = $this->repository->find($id);
-        return \Gate::allows('update-book', $book);
+        $user = \Auth::user();
+        return $user->can('update', $book);
     }
 
 }

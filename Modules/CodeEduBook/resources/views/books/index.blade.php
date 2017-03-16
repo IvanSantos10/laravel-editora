@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <h3>Listagen de livros</h3>
-            {!! Form::model([compact('search')], ['class' => 'form-inline', 'method' => 'GET']) !!}
+            {!! Form::model(compact('search'), ['class' => 'form-inline', 'method' => 'GET']) !!}
                 {!! Form::label('search', 'Pesquisar por título: ', ['class' => 'control-label']) !!}
                 {!! Form::text('search', null, ['class' => 'form-control']) !!}
 

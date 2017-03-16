@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h3>Listagem de categorias</h3>
-            {!! Button::primary('Nova categoria')->asLinkTo(route('categories.create')) !!}
+                {!! Button::primary('Nova categoria')->asLinkTo(route('categories.create')) !!}
         </div>
         <div class="row">
 

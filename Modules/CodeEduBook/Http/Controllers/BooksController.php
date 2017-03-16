@@ -21,6 +21,8 @@ class BooksController extends Controller
 
     /**
      * BooksController constructor.
+     * @param BookRepository $repository
+     * @param CategoryRepository $categoryRepository
      */
     public function __construct(BookRepository $repository, CategoryRepository $categoryRepository)
     {
@@ -31,11 +33,13 @@ class BooksController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         $search = $request->get('search');
+
         $books = $this->repository->paginate(10);
         return view('codeedubook::books.index', compact('books', 'search'));
     }
@@ -54,7 +58,7 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param BookCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(BookCreateRequest $request)
@@ -70,8 +74,9 @@ class BooksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Book $book
+     * @param $id
      * @return \Illuminate\Http\Response
+     * @internal param Book $book
      */
     public function edit($id)
     {
@@ -80,12 +85,14 @@ class BooksController extends Controller
         $categories = $this->categoryRepository->listsWithMutators('name_trashed', 'id');
         return view('codeedubook::books.edit', compact('book', 'categories'));
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param Book $book
+     * @param BookUpdateRequest|Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
+     * @internal param Book $book
      * @internal param int $id
      */
     public function update(BookUpdateRequest $request, $id)
@@ -100,8 +107,9 @@ class BooksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Book $book
+     * @param $id
      * @return \Illuminate\Http\Response
+     * @internal param Book $book
      * @internal param int $id
      */
     public function destroy($id)

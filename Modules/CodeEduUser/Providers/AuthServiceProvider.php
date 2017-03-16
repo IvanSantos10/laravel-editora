@@ -30,16 +30,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        \Gate::define('update-book', function ($user, $book) {
-            return $user->id == $book->author->id;
-        });
-
-        \Gate::before(function ($user, $ability) {
-            if( $user->isAdmin()){
-                return true;
-            }
-        });
-
         $permissionRepository = app(PermissionRepository::class);
         $permissionRepository->pushCriteria(new FindPermissionsResourceCriteria());
         $permissions = $permissionRepository->all();
