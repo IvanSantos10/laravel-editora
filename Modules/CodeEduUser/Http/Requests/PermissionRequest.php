@@ -24,7 +24,6 @@ class PermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'permissions' => "required|array",
             'permissions.*' => 'exists:permissions,id'
         ];
     }

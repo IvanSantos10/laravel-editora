@@ -12,6 +12,17 @@ use CodeEduUser\Models\Role;
  */
 class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 {
+
+    public function updatePermissions(array $permissions, $id)
+    {
+        $model = $this->find($id);
+        $model->permissions()->detach();
+        if(count($permissions)) {
+            $model->permissions()->sync($permissions);
+        }
+        return $model;
+    }
+
     public function update(array $attributes, $id)
     {
         $model = parent::update($attributes, $id);
@@ -40,4 +51,5 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
 }
