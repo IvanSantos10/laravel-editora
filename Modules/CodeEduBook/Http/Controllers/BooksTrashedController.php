@@ -2,10 +2,16 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping as Permission;
 use Editora\Http\Controllers\Controller;
 use CodeEduBook\Repositories\BookRepository;
 use Illuminate\Http\Request;
 
+/**
+ * Class BooksTrashedController
+ * @package CodeEduBook\Http\Controllers
+ * @Permission\Controller(name="books-trashed-admin", description="Administracão de livros excluidos")
+ */
 class BooksTrashedController extends Controller
 {
     /**
@@ -27,6 +33,7 @@ class BooksTrashedController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @Permission\Action(name="list", description="Listar livros excluidos")
      */
     public function index(Request $request)
     {
@@ -37,6 +44,12 @@ class BooksTrashedController extends Controller
         return view('codeedubook::trashed.books.index', compact('books', 'search'));
     }
 
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @Permission\Action(name="list", description="Listar livros excluidos")
+     */
     public function show($id)
     {
         $this->repository->onlyTrashed();
@@ -45,6 +58,12 @@ class BooksTrashedController extends Controller
         return view('codeedubook::trashed.books.show', compact('book'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @Permission\Action(name="update", description="Restaurar livro da lixeira")
+     */
     public function update(Request $request, $id)
     {
         $this->repository->onlyTrashed();

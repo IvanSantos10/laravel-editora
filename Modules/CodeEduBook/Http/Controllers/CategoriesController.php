@@ -2,10 +2,15 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\CategoryRequest;
 use CodeEduBook\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
 
+/**
+ * Class CategoriesController
+ * @package CodeEduBook\Http\Controllers
+ *@Permission\Controller(name="categories-admin", description="Administracão de categorias")
+ */
 class CategoriesController extends Controller
 {
     /**
@@ -27,6 +32,7 @@ class CategoriesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @Permission\Action(name="list", description="Listar de categorias")
      */
     public function index()
     {
@@ -38,6 +44,7 @@ class CategoriesController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @Permission\Action(name="store", description="Cadastrar categoria")
      */
     public function create()
     {
@@ -49,6 +56,7 @@ class CategoriesController extends Controller
      *
      * @param  \CodeEduBook\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
+     * @Permission\Action(name="store", description="Cadastrar categoria")
      */
     public function store(CategoryRequest $request)
     {
@@ -64,6 +72,8 @@ class CategoriesController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param Category $category
+     * @Permission\Action(name="update", description="Editar categoria")
+     *
      */
     public function edit($id)
     {
@@ -79,6 +89,7 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param Category $category
      * @internal param int $id
+     * @Permission\Action(name="update", description="Editar categoria")
      */
     public function update(CategoryRequest $request, $id )
     {
@@ -95,6 +106,7 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param Category $category
      * @internal param int $id
+     * @Permission\Action(name="destroy", description="Excluir categoria")
      */
     public function destroy($id)
     {

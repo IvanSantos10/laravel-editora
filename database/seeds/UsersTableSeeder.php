@@ -12,14 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 1)->create([
-            'name' => 'Admin Editora',
-            'email' => 'admin@editora.com'
-        ]);
-
-        factory(User::class, 1)->create([
-            'name' => 'Admin2 Editora',
-            'email' => 'admin2@editora.com'
-        ]);
+        $author = factory(User::class, 1)->states('author')->create();
+        $roleAuthor = \CodeEduUser\Models\Role::where('name', config('codeedubook.acl.role_author'))->first();
+        $author->roles()->attach($roleAuthor->id);
     }
 }

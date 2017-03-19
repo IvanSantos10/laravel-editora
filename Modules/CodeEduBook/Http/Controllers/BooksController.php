@@ -2,12 +2,18 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
 use CodeEduBook\Repositories\BookRepository;
 use CodeEduBook\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
+/**
+ * Class BooksController
+ * @package CodeEduBook\Http\Controllers
+ * @Permission\Controller(name="books-admin", description="Administracão de livros")
+ */
 class BooksController extends Controller
 {
     /**
@@ -35,6 +41,7 @@ class BooksController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @Permission\Action(name="list", description="Listar livros")
      */
     public function index(Request $request)
     {
@@ -47,6 +54,7 @@ class BooksController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @Permission\Action(name="store", description="Cadastrar livro")
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -58,6 +66,7 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @Permission\Action(name="store", description="Cadastrar livro")
      * @param BookCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
@@ -74,6 +83,7 @@ class BooksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @Permission\Action(name="update", description="Atualizar livro")
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param Book $book
@@ -89,6 +99,7 @@ class BooksController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @Permission\Action(name="update", description="Atualizar livro")
      * @param BookUpdateRequest|Request $request
      * @param $id
      * @return \Illuminate\Http\Response
@@ -107,6 +118,7 @@ class BooksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @Permission\Action(name="destroy", description="Excluir livro")
      * @param $id
      * @return \Illuminate\Http\Response
      * @internal param Book $book
