@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 /**
  * Class BooksController
  * @package CodeEduBook\Http\Controllers
- * @Permission\Controller(name="books-admin", description="Administracão de livros")
+ * @Permission\Controller(name="book-admin", description="Administracão de livros")
  */
 class BooksController extends Controller
 {

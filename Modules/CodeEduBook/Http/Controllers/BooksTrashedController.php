@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 /**
  * Class BooksTrashedController
  * @package CodeEduBook\Http\Controllers
- * @Permission\Controller(name="books-trashed-admin", description="Administracão de livros excluidos")
+ * @Permission\Controller(name="book-trashed-admin", description="Administracão de livros excluidos")
  */
 class BooksTrashedController extends Controller
 {

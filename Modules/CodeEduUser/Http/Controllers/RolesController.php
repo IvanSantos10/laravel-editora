@@ -16,7 +16,7 @@ use Doctrine\DBAL\Query\QueryException;
 /**
  * Class RolesController
  * @package CodeEduUser\Http\Controllers
- * @Permission\Controller(name="roles-admin", description="Administracão de pápeis de usuários")
+ * @Permission\Controller(name="role-admin", description="Administracão de pápeis de usuários")
  */
 class RolesController extends Controller
 {

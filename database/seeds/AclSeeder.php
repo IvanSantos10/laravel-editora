@@ -13,7 +13,7 @@ class AclSeeder extends Seeder
     {
         $roleAuthor = \CodeEduUser\Models\Role::where('name', config('codeedubook.acl.role_author'))->first();
         $permissionsBook = \CodeEduUser\Models\Permission::where('name', 'like', 'book%')->pluck('id')->all();
-        $permissionsCategory = \CodeEduUser\Models\Permission::where('name', 'like', 'categor%')->pluck('id')->all();
+        $permissionsCategory = \CodeEduUser\Models\Permission::where('name', 'like', 'category%')->pluck('id')->all();
 
         $roleAuthor->permissions()->attach($permissionsBook);
         $roleAuthor->permissions()->attach($permissionsCategory);

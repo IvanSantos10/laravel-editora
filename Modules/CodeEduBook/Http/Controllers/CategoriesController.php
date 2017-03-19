@@ -9,7 +9,7 @@ use CodeEduBook\Repositories\CategoryRepository;
 /**
  * Class CategoriesController
  * @package CodeEduBook\Http\Controllers
- *@Permission\Controller(name="categories-admin", description="Administracão de categorias")
+ *@Permission\Controller(name="category-admin", description="Administracão de categorias")
  */
 class CategoriesController extends Controller
 {

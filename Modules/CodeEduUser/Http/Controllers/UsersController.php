@@ -12,7 +12,7 @@ use CodeEduUser\Repositories\UserRepository;
 /**
  * Class UsersController
  * @package CodeEduUser\Http\Controllers
- * @Permission\Controller(name="users-admin", description="Administracão de Usuários")
+ * @Permission\Controller(name="user-admin", description="Administracão de Usuários")
  */
 class UsersController extends Controller
 {

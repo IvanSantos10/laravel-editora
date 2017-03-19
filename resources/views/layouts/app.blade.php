@@ -28,39 +28,42 @@
         $arrayLins = [
                 [
                         'link' => route('categories.index'),
-                        'title' => 'Categoria'
+                        'title' => 'Categoria',
+                        'permission' => 'category-admin/list'
                 ],
                 [
                         'Livros',
                         [
                                 [
                                         'link' => route('books.index'),
-                                        'title' => 'Listar'
+                                        'title' => 'Listar',
+                                        'permission' => 'book-admin/list'
                                 ],
                                 [
                                         'link' => route('trashed.books.index'),
-                                        'title' => 'Lixeira'
+                                        'title' => 'Lixeira',
+                                        'permission' => 'book-trashed-admin/list'
                                 ]
                         ]
                 ],
 
-        ];
-        if (Auth::user()->can('users-admin/list')) {
-            $arrayLins [] = [
-                'Usuários',
                 [
+                        'Usuários',
                         [
-                                'link' => route('codeeduuser.users.index'),
-                                'title' => 'Usuários'
-                        ],
-                        [
-                                'link' => route('codeeduuser.roles.index'),
-                                'title' => 'Papel de usuário'
+                                [
+                                        'link' => route('codeeduuser.users.index'),
+                                        'title' => 'Usuários',
+                                        'permission' => 'user-admin/list'
+                                ],
+                                [
+                                        'link' => route('codeeduuser.roles.index'),
+                                        'title' => 'Papel de usuário',
+                                        'permission' => 'role-admin/list'
+                                ]
                         ]
                 ]
-            ];
-        }
-        $links = Navigation::links($arrayLins);
+        ];
+        $links = Navigation::links(\NavbarAuthorization::getLinksAuthorized($arrayLins));
         $logout = Navigation::links([
                 [
                         Auth::user()->name,
