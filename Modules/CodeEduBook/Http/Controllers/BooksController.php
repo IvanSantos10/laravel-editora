@@ -2,6 +2,7 @@
 
 namespace CodeEduBook\Http\Controllers;
 
+use CodeEduBook\Criteria\FindByAuthor;
 use CodeEduUser\Annotations\Mapping as Permission;
 use CodeEduBook\Http\Requests\BookCreateRequest;
 use CodeEduBook\Http\Requests\BookUpdateRequest;
@@ -33,6 +34,7 @@ class BooksController extends Controller
     public function __construct(BookRepository $repository, CategoryRepository $categoryRepository)
     {
         $this->repository = $repository;
+        $this->repository->pushCriteria(new FindByAuthor());
         $this->categoryRepository = $categoryRepository;
     }
 

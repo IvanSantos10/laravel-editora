@@ -131,6 +131,12 @@ class RolesController extends Controller
         return redirect()->to(\URL::previous());
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @Permission\Action(name="edit-permission", description="Editar permissão de pápeis de usuários")
+     */
     public function editPermission($id)
     {
         $role = $this->repository->find($id);
@@ -145,6 +151,13 @@ class RolesController extends Controller
         return view('codeeduuser::roles.permissions', compact('role', 'permissions', 'permissionsGroup'));
     }
 
+    /**
+     * @param PermissionRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @Permission\Action(name="edit-permission", description="Editar permissão de pápeis de usuários")
+     */
     public function updatePermission(PermissionRequest $request, $id)
     {
         $data = $request->get('permissions', []);
