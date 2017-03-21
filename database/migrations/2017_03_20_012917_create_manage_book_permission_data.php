@@ -17,7 +17,7 @@ class CreateManageBookPermissionData extends Migration
             'name' => $name,
             'description' => 'Administração de livros',
             'resource_name' => $resourceName,
-            'resource_descripton' => 'Gerenciar todos os livros'
+            'resource_description' => 'Gerenciar todos os livros'
         ]);
     }
 
