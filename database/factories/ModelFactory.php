@@ -50,3 +50,11 @@ $factory->define(\CodeEduBook\Models\Book::class, function (Faker\Generator $fak
         'author_id' => $authorId  ///numberBetween(10, 50)
     ];
 });
+
+$factory->define(\CodeEduBook\Models\Chapter::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->sentence(2),
+        'content' => $faker->paragraph(10),
+    ];
+});
