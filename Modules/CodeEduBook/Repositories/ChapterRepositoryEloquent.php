@@ -2,26 +2,24 @@
 
 namespace CodeEduBook\Repositories;
 
-use CodeEduBook\Repositories\BookRepository;
 use Editora\Criteria\CriteriaTrashedTrait;
 use Editora\Repositories\RepositoryRestoreTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeEduBook\Models\Book;
+use CodeEduBook\Models\Chapter;
 
 /**
- * Class BookRepositoryEloquent
+ * Class ChapterRepositoryEloquent
  * @package namespace Editora\Repositories;
  */
-class BookRepositoryEloquent extends BaseRepository implements BookRepository
+class ChapterRepositoryEloquent extends BaseRepository implements ChapterRepository
 {
     use CriteriaTrashedTrait, RepositoryRestoreTrait;
 
 
     protected $fieldSearchable = [
         'title' => 'like',
-        'author.name' => 'like',
-        'categories.name' => 'like'
+        'author.name' => 'like'
     ];
     /**
      * Specify Model class name
@@ -30,22 +28,8 @@ class BookRepositoryEloquent extends BaseRepository implements BookRepository
      */
     public function model()
     {
-        return Book::class;
+        return Chapter::class;
     }
-
-    public function create(array $attributes)
-    {
-        $model = parent::create($attributes);
-        $model->categories()->sync($attributes['categories']);
-        return $model;
-    }
-
-    public function update(array $attributes, $id)
-    {
-        $model = parent::update($attributes, $id);
-        $model->categories()->sync($attributes['categories']);
-    }
-
 
     /**
      * Boot up the repository, pushing criteria

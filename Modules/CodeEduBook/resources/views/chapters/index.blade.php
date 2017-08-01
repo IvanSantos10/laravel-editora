@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Listagem de livros</h3>
-            {!! Button::primary('Nova livro')->asLinkTo(route('books.create')) !!}
+            <h3>Capítulo de {{$book->title}}</h3>
+            {!! Button::primary('Nova capítulo')->asLinkTo(route('chapters.create', ['book' => $book->id])) !!}
         </div>
         <div class="row">
             <h3>Listagen de livros</h3>
@@ -17,13 +17,13 @@
         </div>
         <div class="row">
 
-            {!! Table::withContents($books->items())->striped()
-                ->callback('Ações', function ($field, $book){
-                    $linkEdit = route('books.edit', ['book' => $book->id]);
-                    $linkDestroy = route('books.destroy', ['book' => $book->id]);
-                    $linkChapters = route('chapters.index', ['book' => $book->id]);
-                    $deleteForm = "delete-form-{$book->id}";
-                    $form =  Form::open(['route' => ['books.destroy', 'book' => $book->id],
+            {!! Table::withContents($chapters->items())->striped()
+                ->callback('Ações', function ($field, $chapter) use($book){
+                    $linkEdit = route('chapters.edit', ['book' => $book->id, 'chapter' => $chapter->id]);
+                    $linkDestroy = route('chapters.destroy', ['book' => $book->id, 'chapter' => $chapter->id]);
+                    $deleteForm = "delete-form-{$chapter->id}";
+                    $form =  Form::open(['route' =>
+                                ['chapters.destroy', 'book' => $book->id, 'chapter' => $chapter->id],
                                 'id' => $deleteForm, 'method' => 'DELETE', 'style' => 'display:nome']).
                                 Form::close();
                     $anchorDestroy = Button::link('Ir para lixeira ')
@@ -31,8 +31,6 @@
                                             'onclick' => "event.preventDefault(); document.getElementById(\"{$deleteForm}\").submit();"
                                         ]);
                     return "<ul class=\"list-inline\">".
-                            "<li>".Button::link('Capítulo')->asLinkto($linkChapters)."</li>".
-                            "<li>|</li>".
                             "<li>".Button::link('Editar')->asLinkto($linkEdit)."</li>".
                             "<li>|</li>".
                             "<li>$anchorDestroy</li>".
@@ -41,7 +39,7 @@
                 })
             !!}
 
-            {{ $books->links() }}
+            {{ $chapters->links() }}
         </div>
     </div>
 @endsection
